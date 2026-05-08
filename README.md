@@ -15,6 +15,10 @@ app_port: 8000
 ## 📂 โครงสร้างโปรเจกต์ (Project Structure)
 ```text
 project/
+├── api_testing/
+│   └── Cloud.jmx #  ไฟล์สคริปต์ที่ใช้ทดสอบโหลดบน Cloud (Hugging Face)   
+│   └── Dog-cat-api.postman_collection.json # ชุดคําสั่งสําหรับเรียกใช้งาน API
+│   └── Local.jmx #  ไฟล์สคริปต์ที่ใช้ทดสอบโหลดบน Local (Docker)
 ├── app/
 │   └── main.py          # ระบบ API ด้วย FastAPI รองรับ Concurrency (Worker Pool)
 ├── model/
@@ -60,15 +64,14 @@ docker run -p 8000:8000 dog-cat-api
 
 ## ☁️ การเรียกใช้งาน API บน Cloud (Hugging Face Spaces)
 
-### หลังจาก Deploy ระบบไปยัง Cloud เรียบร้อยแล้ว สามารถเรียกใช้งาน API ผ่านคำสั่ง cURL ได้ดังนี้:
+คุณสามารถเรียกใช้งาน API ที่ออนไลน์อยู่ได้ทันทีผ่านคำสั่ง cURL ดังนี้:
 
-### คำสั่ง cURL สำหรับทำนายผล
 ```bash
 curl -X 'POST' \
-  'https://[your-username]-[your-space-name].hf.space/predict' \
+  '[https://katanyapat-dog-cat-api.hf.space/predict](https://katanyapat-dog-cat-api.hf.space/predict)' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'file=@dataset/cat/cat_sample.jpg;type=image/jpeg'
+  -F 'file=@dataset/cat/cat_1.jpg;type=image/jpeg'
 ```
 
 ### ตัวอย่าง JSON Response
@@ -90,3 +93,8 @@ curl -X 'POST' \
 ระบบรองรับการทำงานอัตโนมัติผ่าน GitHub Actions:
 1. **Continuous Integration (CI):** รัน Unit Test อัตโนมัติทุกครั้งที่มีการ Push โค้ด
 2. **Continuous Deployment (CD):** หาก Test ผ่าน 100% ระบบจะ Build Docker และทำการ Deploy อัปเดตไปยัง Hugging Face Spaces โดยอัตโนมัติ
+
+## 🧪 การทดสอบระบบ (Testing)
+โปรเจกต์นี้มี Artifacts สำหรับการทดสอบเตรียมไว้ในโฟลเดอร์ `api_testing/`:
+* **Postman Collection:** `Dog-cat-api.postman_collection.json` สำหรับทดสอบฟังก์ชันการทำงาน
+* **JMeter Test Plan:** ไฟล์ `.jmx` ทั้งสำหรับ Local และ Cloud สำหรับการทำ Load Testing ตามเอกสารประกอบการเรียน
