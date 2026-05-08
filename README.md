@@ -68,7 +68,7 @@ docker run -p 8000:8000 dog-cat-api
 
 ```bash
 curl -X 'POST' \
-  '[https://katanyapat-dog-cat-api.hf.space/predict](https://katanyapat-dog-cat-api.hf.space/predict)' \
+  'https://katanyapat-dog-cat-api.hf.space/predict' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'file=@dataset/cat/cat_1.jpg;type=image/jpeg'
