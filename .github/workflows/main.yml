@@ -62,10 +62,15 @@ jobs:
           git lfs track "*.pt"
           git lfs track "*.data"
           
-          # 3. เซฟการตั้งค่าและแพ็คของทั้งหมด
+          # 3. ลบของที่ไม่จำเป็นสำหรับ Production ทิ้งก่อนส่ง 
+          rm -rf dataset/
+          rm -rf test/
+          rm -f model/model_optimization.ipynb
+          
+          # 4. เซฟการตั้งค่าและแพ็คของ
           git add .gitattributes
           git add .
-          git commit -m "Auto-deploy with Git LFS"
+          git commit -m "Auto-deploy to Production (Clean build)"
           
           # 4. ส่งขึ้น Hugging Face แบบ Force Push
           git push https://katanyapat:$HF_TOKEN@huggingface.co/spaces/katanyapat/dog-cat-api main -f
