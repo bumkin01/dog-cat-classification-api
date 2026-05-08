@@ -103,7 +103,7 @@ async def predict(file: UploadFile = File(...)):
     # 2. เช็คขนาดไฟล์ - ป้องกัน Out of Memory (OOM)
     image_bytes = await file.read()
     if len(image_bytes) > MAX_FILE_SIZE:
-        raise HTTPException(status_code=status.HTTP_413_CONTENT_TOO_LARGE, detail="File too large. Maximum size is 5MB.")
+        raise HTTPException(status_code=413, detail="File too large. Maximum size is 5MB.")
     
     # 3. เช็คไฟล์รูปเสีย (Corrupted Image)
     try:
