@@ -49,7 +49,22 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }} 
         run: |
+          # 1. ลบประวัติ Git เดิมทิ้ง (ทำเฉพาะในหุ่นยนต์ ไม่กระทบ GitHub เรา)
+          rm -rf .git
+          git init
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           
+          # 2. เปิดใช้งาน Git LFS และสั่งให้ดูแลไฟล์โมเดลทั้งหมด
+          git lfs install
+          git lfs track "*.onnx"
+          git lfs track "*.pt"
+          git lfs track "*.data"
+          
+          # 3. เซฟการตั้งค่าและแพ็คของทั้งหมด
+          git add .gitattributes
+          git add .
+          git commit -m "Auto-deploy with Git LFS"
+          
+          # 4. ส่งขึ้น Hugging Face แบบ Force Push
           git push https://katanyapat:$HF_TOKEN@huggingface.co/spaces/katanyapat/dog-cat-api main -f
