@@ -1,3 +1,13 @@
+---
+title: Dog Cat Classification API
+emoji: 🐶
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 8000
+---
+
 # 🚀 High-Throughput Dog vs Cat Classification API
 
 โปรเจกต์นี้เป็นระบบบริการจำแนกรูปภาพสุนัขและแมว (Image Classification) ที่ออกแบบมาเพื่อรองรับการใช้งานพร้อมกันจำนวนมาก (High-Throughput) โดยใช้เทคนิค MLOps ครบวงจร ตั้งแต่การทำ Model Optimization ไปจนถึงการทำ CI/CD และ Containerization
