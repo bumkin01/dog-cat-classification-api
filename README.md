@@ -15,10 +15,6 @@ app_port: 8000
 ## 📂 โครงสร้างโปรเจกต์ (Project Structure)
 ```text
 project/
-├── api_testing/
-│   └── Cloud.jmx #  ไฟล์สคริปต์ที่ใช้ทดสอบโหลดบน Cloud (Hugging Face)   
-│   └── Dog-cat-api.postman_collection.json # ชุดคําสั่งสําหรับเรียกใช้งาน API
-│   └── Local.jmx #  ไฟล์สคริปต์ที่ใช้ทดสอบโหลดบน Local (Docker)
 ├── app/
 │   └── main.py          # ระบบ API ด้วย FastAPI รองรับ Concurrency (Worker Pool)
 ├── model/
